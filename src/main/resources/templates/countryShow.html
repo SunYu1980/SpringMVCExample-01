@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>国家信息一览</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.jp/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
+
+    <script type="text/javascript">
+        var table;
+        $(document).ready(function () {
+            table = $('#customerList').DataTable({
+                pageLength: 10,
+                ajax: {
+                    url: '/getCountrys',
+                    dataSrc: ''
+                },
+                columns: [{
+                    title: 'Id',
+                    data: 'mstcountrycd'
+                }, {
+                    title: 'Name',
+                    data: 'mstcountrynanme'
+                }],
+                select: {
+                    style: 'single'
+                },
+            });
+
+        });
+
+    </script>
+</head>
+
+<body>
+    <div class="p-3 m-0 border-0 bd-example m-0 ">
+
+
+        <table id="customerList" class="display" style="width:100%"></table>
+
+        <button type="button" class="btn btn-primary" onclick="window.location.href='/countryInit'"> 添加</button>
+
+        <button type="button" class="btn btn-primary" onclick="window.location.href='/countryUpdate'"> 更新</button>
+
+    </div>
+</body>
+
+</html>
